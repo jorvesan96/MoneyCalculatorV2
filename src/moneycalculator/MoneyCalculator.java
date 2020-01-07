@@ -35,7 +35,7 @@ public class MoneyCalculator {
     }
     
     private void process() throws IOException{
-        exchangeRate = getExchangeRate("USD","EUR");
+        exchangeRate = getExchangeRate(currency,"EUR");
     }
     
     private void output() {
