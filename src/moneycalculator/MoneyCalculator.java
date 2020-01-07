@@ -13,7 +13,7 @@ public class MoneyCalculator {
     private double exchangeRate;
     String currency;
 
-    public static void main(String[] args) throws IOException{
+    public static void main(String[] args) throws Exception{
         MoneyCalculator moneyCalculator = new MoneyCalculator();
         moneyCalculator.control();
     }
@@ -39,7 +39,7 @@ public class MoneyCalculator {
     }
     
     private void output() {
-        System.out.println(amount + " " + currency + " = " + amount*exchangeRate + " €");
+        System.out.println(amount + " USD equivalen a " + amount*exchangeRate + " EUR");
     }
     
     private static double getExchangeRate(String from, String to) throws IOException {
