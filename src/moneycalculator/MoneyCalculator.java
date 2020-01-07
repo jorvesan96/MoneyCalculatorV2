@@ -11,14 +11,15 @@ public class MoneyCalculator {
     
     private double amount;
     private double exchangeRate;
-    String currency;
+    private String currencyFrom;
+    private String currencyTo;
 
     public static void main(String[] args) throws Exception{
         MoneyCalculator moneyCalculator = new MoneyCalculator();
-        moneyCalculator.control();
+        moneyCalculator.execute();
     }
     
-    private void control() throws IOException{
+    private void execute() throws Exception{
         input();
         process();
         output();
@@ -28,21 +29,25 @@ public class MoneyCalculator {
     private void input(){
         System.out.println("Introduzca una cantidad: ");
         Scanner scanner = new Scanner(System.in);
-        amount = scanner.nextDouble();
         
-        System.out.println("Introduce una divisa: ");
-        currency = scanner.next();
+        amount = Double.parseDouble(scanner.next());
+        
+        System.out.println("Introduzca una divisa origen: ");
+        currencyFrom = scanner.next();
+        
+        System.out.println("Introduzca una divisa destino: ");
+        currencyTo = scanner.next();
     }
     
-    private void process() throws IOException{
-        exchangeRate = getExchangeRate(currency,"EUR");
+    private void process() throws Exception{
+        exchangeRate = getExchangeRate(currencyFrom,currencyTo);
     }
     
     private void output() {
-        System.out.println(amount + " USD equivalen a " + amount*exchangeRate + " EUR");
+        System.out.println(amount + " " + currencyFrom + " equivalen a " + amount * exchangeRate + " " + currencyTo);
     }
     
-    private static double getExchangeRate(String from, String to) throws IOException {
+    private static double getExchangeRate(String from, String to) throws Exception {
         URL url = 
             new URL("http://free.currencyconverterapi.com/api/v5/convert?q=" +
                    from + "_" + to + "&compact=y");
